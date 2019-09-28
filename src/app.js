@@ -34,6 +34,7 @@ class App extends Component{
         this.getFacts=this.getFacts.bind(this);
         this.makeKitty=this.makeKitty.bind(this);
         this.showKitty=this.showKitty.bind(this);
+        this.hideKitty=this.hideKitty.bind(this);
     }
 
     componentDidMount(){
@@ -78,6 +79,12 @@ class App extends Component{
         });
     }
 
+    hideKitty(){
+        this.setState({
+            show: 'off'
+        })
+    }
+
     render(){
         var display;
         if(this.state.show === 'on'){
@@ -85,6 +92,7 @@ class App extends Component{
                         url={this.state.url} 
                         height={this.state.height} 
                         width={this.state.width}
+                        hideKitty={this.hideKitty}
                         />
         } else {
             display = <div>No Kitty Yet!</div>
