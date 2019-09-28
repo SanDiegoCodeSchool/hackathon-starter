@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Factoid from './factoid'
+import Kitty from './kitty';
 /**
  * Example object from cat fact
   {
@@ -24,39 +25,94 @@ class App extends Component{
         this.state={
             response: [],
             facts: [],
-            text: ''
+            kitty: [],
+            show: 'off',
+            url: '',
+            height: '',
+            width: ''
         }
-        this.onClick=this.onClick.bind(this);
+        this.getFacts=this.getFacts.bind(this);
+        this.makeKitty=this.makeKitty.bind(this);
+        this.showKitty=this.showKitty.bind(this);
     }
 
     componentDidMount(){
         axios
-        .get('https://cors-anywhere.herokuapp.com/https://cat-fact.herokuapp.com/facts')
-        .then(response => response.data)
-        // .then(facts => console.log(facts));
-        .then(response => this.setState({ response }));
-        console.log(this.state.response);
+            .get('https://cors-anywhere.herokuapp.com/https://cat-fact.herokuapp.com/facts')
+            .then(response => response.data)
+            .then(response => this.setState({ response }));
+        axios
+            .get('https://api.thecatapi.com/v1/images/search')
+            .then(response => response.data)
+            .then(kitty => this.setState({ kitty }));
     }
 
-    onClick(){
-        var x = this.state.response;
-        var y = x.all;
+    getFacts(){
+        var x = this.state.response.all;
+        // var y = x.all;
         console.log(this.state.facts);
         this.setState({
-            facts: y
+            facts: x
+        });
+    }
+
+    makeKitty(){
+        axios
+            .get('https://api.thecatapi.com/v1/images/search')
+            .then(response => response.data)
+            .then(kitty => this.setState({ kitty }));
+        this.showKitty();
+        console.log(this.state.kitty);
+    }
+
+    showKitty(){
+        let cat = this.state.kitty;
+        let kitten = cat[0];
+        console.log('Ran showKitty();')
+        this.setState({
+            show: 'on',
+            kitty: kitten,
+            url: kitten.url,
+            height: kitten.height,
+            width: kitten.width
         });
     }
 
     render(){
+        var display;
+        if(this.state.show === 'on'){
+            display = <Kitty 
+                        url={this.state.url} 
+                        height={this.state.height} 
+                        width={this.state.width}
+                        />
+        } else {
+            display = <div>No Kitty Yet!</div>
+        }
         return(
             <div className='App'>
                 <p>Here's some text!</p>
-                <button onClick={this.onClick}>Log Facts</button>
+                <button onClick={this.getFacts}>Log Facts</button>
+                <div>
                 {this.state.facts.map(item =>(
-                    <Factoid key={item.id} text={item.text+item.id} />
+                    <Factoid 
+                        key={item.id} 
+                        text={item.text+item.id}
+                         />
                 ))}
-                {/* {this.state.facts} */}
-                {/* <Factoid fact={this.state.facts} /> */}
+                </div>
+                <div>
+                    <button onClick={this.makeKitty}>Get a kitty!</button>
+                    {display}
+                    {/* {this.state.kitty.map(kitty =>(
+                        <Kitty 
+                            key={kitty.id} 
+                            url={kitty.url} 
+                            height={kitty.height} 
+                            width={kitty.width}
+                             />
+                    ))} */}
+                </div>
             </div>
         )
     }
