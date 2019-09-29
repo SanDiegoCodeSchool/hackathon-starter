@@ -102,15 +102,9 @@ class App extends Component{
     }
 
     override(){
-        // if(this.state.override === true){
-        //     this.setState({
-        //         override: false
-        //     });
-        // } else if(this.state.override === false){
-            this.setState({
-                override: true
-            });
-        // }
+        this.setState({
+            override: true
+        });
     }
 
     render(){
@@ -146,14 +140,15 @@ class App extends Component{
             displayFact = <div>No Fact Yet!</div>
         }
         return(
-            <div className='App'>
-                <p>Here's some text!</p>
-                <div>
-                    <button onClick={this.toggleFact}>Get a cat fact!</button>
+            <div className='app container'>
+                <h1 className='title-large'>Welcome to the con-CAT-enator!</h1>
+                <h3 className='title-medium'>Please click below for cat facts and pictures!</h3>
+                <div className='fact-div'>
+                    <button className='fact-button' onClick={this.toggleFact}>Get a cat fact!</button>
                     {displayFact}
                 </div>
-                <div>
-                    <button onClick={this.makeKitty}>Get a kitty!</button>
+                <div className='picture-div'>
+                    <button className='kitty-button' onClick={this.makeKitty}>Get a kitty!</button>
                     {display}
                 </div>
             </div>

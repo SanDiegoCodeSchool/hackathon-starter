@@ -1,3 +1,19 @@
 .red {
     color: red;
 }
+
+body {
+    background-color: #ccffcc;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #ccffcc;
+}
+
+.title-large {
+    color: darkblue;
+    background-color: #ccffcc;
+}
