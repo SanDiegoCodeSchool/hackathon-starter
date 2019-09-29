@@ -11,17 +11,18 @@ class App extends Component{
             facts: [],
             fact: '',
             kitty: [],
-            showKitty: 'off',
+            showKitty: false,
             url: '',
             height: '',
             width: '',
-            showFact: 'off'
+            showFact: false,
+            override: false
         }
         this.getFacts=this.getFacts.bind(this);
         this.makeKitty=this.makeKitty.bind(this);
         this.showKitty=this.showKitty.bind(this);
         this.hideKitty=this.hideKitty.bind(this);
-        this.makeFact=this.makeFact.bind(this);
+        this.toggleFact=this.toggleFact.bind(this);
     }
 
     componentDidMount(){
@@ -54,15 +55,14 @@ class App extends Component{
             .then(response => response.data)
             .then(kitty => this.setState({ kitty }));
         this.showKitty();
-        console.log(this.state.kitty);
+        console.log(this.state.width);
+        console.log(this.state.height);
     }
 
     showKitty(){
-        let cat = this.state.kitty;
-        let kitten = cat[0];
-        console.log('Ran showKitty();')
+        let kitten = this.state.kitty[0];
         this.setState({
-            showKitty: 'on',
+            showKitty: true,
             kitty: kitten,
             url: kitten.url,
             height: kitten.height,
@@ -72,33 +72,64 @@ class App extends Component{
 
     hideKitty(){
         this.setState({
-            showKitty: 'off'
+            showKitty: false
         })
     }
 
-    makeFact(){
-        this.setState({
-            showFact: 'on'
-        });
+    toggleFact(){
+        if(this.state.showFact === false){
+            this.setState({
+                showFact: true
+            });
+            this.getFacts();
+        } else if(this.state.showFact === true){
+            this.setState({
+                showFact: false
+            });
+        }
+    }
+
+    override(){
+        if(this.state.override === true){
+            this.setState({
+                override: false
+            });
+        } else if(this.state.override === false){
+            this.setState({
+                override: true
+            });
+        }
     }
 
     render(){
         var display;
-        if(this.state.showKitty === 'on'){
+        if(this.state.showKitty === true){
             display = <Kitty 
                         url={this.state.url} 
                         height={this.state.height} 
                         width={this.state.width}
                         hideKitty={this.hideKitty}
                         />
+        }
+        else if(this.state.showKitty === true && this.state.width > 800 && this.state.height > 600 && this.state.override===false){
+            display =   <div>
+                            <p>Kitty is real big! Are you sure?</p>
+                            <button onClick={this.override}>Yes!</button>
+                        </div>
         } else {
             display = <div>No Kitty Yet!</div>
         }
         var displayFact;
-        if(this.state.showFact === 'on'){
-            displayFact = <Factoid
-                            text={this.state.facts.text}
-                            />
+        if(this.state.showFact === true){
+            displayFact =   
+                <div>
+                    <Factoid
+                        text={this.state.facts.text}
+                    />
+                    <div>
+                        <button onClick={this.getFacts}>Change Cat Fact!</button>
+                    </div>
+                </div>
         } else {
             displayFact = <div>No Fact Yet!</div>
         }
@@ -106,23 +137,12 @@ class App extends Component{
             <div className='App'>
                 <p>Here's some text!</p>
                 <div>
-                    <button onClick={this.getFacts}>Log Facts</button>
-                </div>
-                <div>
-                    <button onClick={this.makeFact}>Get a cat fact!</button>
+                    <button onClick={this.toggleFact}>Get a cat fact!</button>
                     {displayFact}
                 </div>
                 <div>
                     <button onClick={this.makeKitty}>Get a kitty!</button>
                     {display}
-                    {/* {this.state.kitty.map(kitty =>(
-                        <Kitty 
-                            key={kitty.id} 
-                            url={kitty.url} 
-                            height={kitty.height} 
-                            width={kitty.width}
-                             />
-                    ))} */}
                 </div>
             </div>
         )
