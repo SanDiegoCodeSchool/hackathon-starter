@@ -2,39 +2,26 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Factoid from './factoid'
 import Kitty from './kitty';
-/**
- * Example object from cat fact
-  {
-  "_id": "591d9bb2227c1a0020d26826",
-  "text": "The CIA spent US$20 million in the 60s training cats to spy on the Soviets. The first spy cat was hit by a taxi.",
-  "type": "cat",
-  "user": {
-    "_id": "587288f6e6f85e64ae1c7ef7",
-    "name": {
-      "first": "Alex",
-      "last": "Wohlbruck"
-    }
-  },
-  "upvotes": 12,
-  "userUpvoted": null
-}
- */
+
 class App extends Component{
     constructor(props){
         super(props);
         this.state={
             response: [],
             facts: [],
+            fact: '',
             kitty: [],
-            show: 'off',
+            showKitty: 'off',
             url: '',
             height: '',
-            width: ''
+            width: '',
+            showFact: 'off'
         }
         this.getFacts=this.getFacts.bind(this);
         this.makeKitty=this.makeKitty.bind(this);
         this.showKitty=this.showKitty.bind(this);
         this.hideKitty=this.hideKitty.bind(this);
+        this.makeFact=this.makeFact.bind(this);
     }
 
     componentDidMount(){
@@ -50,10 +37,14 @@ class App extends Component{
 
     getFacts(){
         var x = this.state.response.all;
-        // var y = x.all;
+        var min = 0;
+        var max = x.length;
+        var random = Math.floor(Math.random() * (+max - +min)) + +min;
+        var fact = x[random];
         console.log(this.state.facts);
+        console.log(this.state.fact);
         this.setState({
-            facts: x
+            facts: fact
         });
     }
 
@@ -71,7 +62,7 @@ class App extends Component{
         let kitten = cat[0];
         console.log('Ran showKitty();')
         this.setState({
-            show: 'on',
+            showKitty: 'on',
             kitty: kitten,
             url: kitten.url,
             height: kitten.height,
@@ -81,13 +72,19 @@ class App extends Component{
 
     hideKitty(){
         this.setState({
-            show: 'off'
+            showKitty: 'off'
         })
+    }
+
+    makeFact(){
+        this.setState({
+            showFact: 'on'
+        });
     }
 
     render(){
         var display;
-        if(this.state.show === 'on'){
+        if(this.state.showKitty === 'on'){
             display = <Kitty 
                         url={this.state.url} 
                         height={this.state.height} 
@@ -97,17 +94,23 @@ class App extends Component{
         } else {
             display = <div>No Kitty Yet!</div>
         }
+        var displayFact;
+        if(this.state.showFact === 'on'){
+            displayFact = <Factoid
+                            text={this.state.facts.text}
+                            />
+        } else {
+            displayFact = <div>No Fact Yet!</div>
+        }
         return(
             <div className='App'>
                 <p>Here's some text!</p>
-                <button onClick={this.getFacts}>Log Facts</button>
                 <div>
-                {this.state.facts.map(item =>(
-                    <Factoid 
-                        key={item.id} 
-                        text={item.text+item.id}
-                         />
-                ))}
+                    <button onClick={this.getFacts}>Log Facts</button>
+                </div>
+                <div>
+                    <button onClick={this.makeFact}>Get a cat fact!</button>
+                    {displayFact}
                 </div>
                 <div>
                     <button onClick={this.makeKitty}>Get a kitty!</button>
