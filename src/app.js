@@ -23,6 +23,7 @@ class App extends Component{
         this.showKitty=this.showKitty.bind(this);
         this.hideKitty=this.hideKitty.bind(this);
         this.toggleFact=this.toggleFact.bind(this);
+        this.override=this.override.bind(this);
     }
 
     componentDidMount(){
@@ -61,13 +62,24 @@ class App extends Component{
 
     showKitty(){
         let kitten = this.state.kitty[0];
-        this.setState({
-            showKitty: true,
-            kitty: kitten,
-            url: kitten.url,
-            height: kitten.height,
-            width: kitten.width
-        });
+        if(kitten.height > 600 || kitten.width > 800){
+            this.setState({
+                showKitty: true,
+                kitty: kitten,
+                url: kitten.url,
+                height: kitten.height,
+                width: kitten.width,
+                override: false
+            });
+        } else {
+            this.setState({
+                showKitty: true,
+                kitty: kitten,
+                url: kitten.url,
+                height: kitten.height,
+                width: kitten.width
+            });
+        }
     }
 
     hideKitty(){
@@ -90,20 +102,20 @@ class App extends Component{
     }
 
     override(){
-        if(this.state.override === true){
-            this.setState({
-                override: false
-            });
-        } else if(this.state.override === false){
+        // if(this.state.override === true){
+        //     this.setState({
+        //         override: false
+        //     });
+        // } else if(this.state.override === false){
             this.setState({
                 override: true
             });
-        }
+        // }
     }
 
     render(){
         var display;
-        if(this.state.showKitty === true){
+        if(this.state.showKitty === true && this.state.override === true){
             display = <Kitty 
                         url={this.state.url} 
                         height={this.state.height} 
@@ -111,7 +123,7 @@ class App extends Component{
                         hideKitty={this.hideKitty}
                         />
         }
-        else if(this.state.showKitty === true && this.state.width > 800 && this.state.height > 600 && this.state.override===false){
+        else if(this.state.showKitty === true && this.state.override === false){
             display =   <div>
                             <p>Kitty is real big! Are you sure?</p>
                             <button onClick={this.override}>Yes!</button>
