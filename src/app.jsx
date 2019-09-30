@@ -77,7 +77,8 @@ class App extends Component{
                 kitty: kitten,
                 url: kitten.url,
                 height: kitten.height,
-                width: kitten.width
+                width: kitten.width,
+                override: true
             });
         }
     }
@@ -108,7 +109,7 @@ class App extends Component{
     }
 
     render(){
-        var display;
+        var displayImage;
         if(this.state.showKitty === true && this.state.override === true){
             displayImage = <Kitty 
                         url={this.state.url} 
@@ -119,8 +120,9 @@ class App extends Component{
         }
         else if(this.state.showKitty === true && this.state.override === false){
             displayImage =  <div className='override-div'>
-                                <p>Kitty is real big! Are you sure?</p>
+                                <p>Kitty is real big! Are you sure? ({this.state.height} x {this.state.width})</p>
                                 <button onClick={this.override}>Yes!</button>
+                                <button onClick={this.makeKitty}>No, get me a different kitty!</button>
                             </div>
         } else {
             displayImage = <div className='placeholder'>No Kitty Yet!</div>

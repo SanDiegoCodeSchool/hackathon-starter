@@ -4,6 +4,7 @@
 
 body {
     background-color: #ccffcc;
+    border: 1px solid gray;
 }
 
 .container {
@@ -11,10 +12,12 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     background-color: #ccffcc;
+    border: 1px solid gray;
 }
 
 .title-div {
     align-self: flex-start;
+    border: 1px solid gray;
 }
 
 .title-large {
@@ -28,10 +31,16 @@ body {
 
 .fact-div {
     align-self: center;
+    border: 1px solid gray;
 }
 
 .fact-button {
     background: #ccffcc;
+}
+
+.picture-div {
+    align-self: center;
+    border: 1px solid gray;
 }
 
 .kitty-button {
