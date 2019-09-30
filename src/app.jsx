@@ -62,7 +62,7 @@ class App extends Component{
 
     showKitty(){
         let kitten = this.state.kitty[0];
-        if(kitten.height > 600 || kitten.width > 800){
+        if(kitten.height > 900 || kitten.width > 1200){
             this.setState({
                 showKitty: true,
                 kitty: kitten,
@@ -110,7 +110,7 @@ class App extends Component{
     render(){
         var display;
         if(this.state.showKitty === true && this.state.override === true){
-            display = <Kitty 
+            displayImage = <Kitty 
                         url={this.state.url} 
                         height={this.state.height} 
                         width={this.state.width}
@@ -118,12 +118,12 @@ class App extends Component{
                         />
         }
         else if(this.state.showKitty === true && this.state.override === false){
-            display =   <div>
-                            <p>Kitty is real big! Are you sure?</p>
-                            <button onClick={this.override}>Yes!</button>
-                        </div>
+            displayImage =  <div className='override-div'>
+                                <p>Kitty is real big! Are you sure?</p>
+                                <button onClick={this.override}>Yes!</button>
+                            </div>
         } else {
-            display = <div>No Kitty Yet!</div>
+            displayImage = <div className='placeholder'>No Kitty Yet!</div>
         }
         var displayFact;
         if(this.state.showFact === true){
@@ -137,19 +137,21 @@ class App extends Component{
                     </div>
                 </div>
         } else {
-            displayFact = <div>No Fact Yet!</div>
+            displayFact = <div className='placeholder'>No Fact Yet!</div>
         }
         return(
             <div className='app container'>
-                <h1 className='title-large'>Welcome to the con-CAT-enator!</h1>
-                <h3 className='title-medium'>Please click below for cat facts and pictures!</h3>
+                <div className='title-div'>
+                    <h1 className='title-large'>Welcome to the con-CAT-enator!</h1>
+                    <h3 className='title-medium'>Please click below for cat facts and pictures!</h3>
+                </div>                    
                 <div className='fact-div'>
                     <button className='fact-button' onClick={this.toggleFact}>Get a cat fact!</button>
                     {displayFact}
                 </div>
                 <div className='picture-div'>
                     <button className='kitty-button' onClick={this.makeKitty}>Get a kitty!</button>
-                    {display}
+                    {displayImage}
                 </div>
             </div>
         )

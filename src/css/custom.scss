@@ -13,7 +13,27 @@ body {
     background-color: #ccffcc;
 }
 
+.title-div {
+    align-self: flex-start;
+}
+
 .title-large {
     color: darkblue;
     background-color: #ccffcc;
+}
+
+.title-medium {
+    color: lightblue;
+}
+
+.fact-div {
+    align-self: center;
+}
+
+.fact-button {
+    background: #ccffcc;
+}
+
+.kitty-button {
+    background: pink;
 }
