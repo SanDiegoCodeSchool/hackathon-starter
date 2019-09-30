@@ -121,8 +121,8 @@ class App extends Component{
         else if(this.state.showKitty === true && this.state.override === false){
             displayImage =  <div className='override-div'>
                                 <p>Kitty is real big! Are you sure? ({this.state.height} x {this.state.width})</p>
-                                <button onClick={this.override}>Yes!</button>
-                                <button onClick={this.makeKitty}>No, get me a different kitty!</button>
+                                <button onClick={this.override} className='confirm-kitty'>Yes!</button>
+                                <button onClick={this.makeKitty} className='reject-kitty'>No, get me a different kitty!</button>
                             </div>
         } else {
             displayImage = <div className='placeholder'>No Kitty Yet!</div>
@@ -133,13 +133,15 @@ class App extends Component{
                 <div>
                     <Factoid
                         text={this.state.facts.text}
+                        getFacts={this.getFacts}
+                        toggleFact={this.toggleFact}
                     />
-                    <div>
-                        <button onClick={this.getFacts}>Change Cat Fact!</button>
-                    </div>
                 </div>
         } else {
-            displayFact = <div className='placeholder'>No Fact Yet!</div>
+            displayFact =   <div className='no-fact'>
+                                <button className='fact-button' onClick={this.toggleFact}>Get a cat fact!</button>
+                                <div className='placeholder'>No Fact Yet!</div>
+                            </div>
         }
         return(
             <div className='app container'>
@@ -148,12 +150,13 @@ class App extends Component{
                     <h3 className='title-medium'>Please click below for cat facts and pictures!</h3>
                 </div>                    
                 <div className='fact-div'>
-                    <button className='fact-button' onClick={this.toggleFact}>Get a cat fact!</button>
                     {displayFact}
                 </div>
                 <div className='picture-div'>
+                    <div className='kitty-switch'>
+                        {displayImage}
+                    </div>
                     <button className='kitty-button' onClick={this.makeKitty}>Get a kitty!</button>
-                    {displayImage}
                 </div>
             </div>
         )
