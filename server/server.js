@@ -2,14 +2,17 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
+var cors = require('cors')
 
+app.use(cors())
 app.use(express.static('dist'));
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
-    axios.get(`http://www.mocky.io/v2/5d5cba7e320000a5e4628f33?apikey=${process.env.APIKEY}`)
+    axios.get(`https://api.kanye.rest`)
         .then((result) => {
             res.send(result.data);
+            console.log(result);
         })
         .catch((error) => {
             console.error(error);
