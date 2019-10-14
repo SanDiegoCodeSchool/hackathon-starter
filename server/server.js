@@ -2,9 +2,8 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-var cors = require('cors')
 
-app.use(cors())
+
 app.use(express.static('dist'));
 app.use(express.static('public'));
 

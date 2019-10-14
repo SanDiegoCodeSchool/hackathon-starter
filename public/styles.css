@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#container {
+    margin: auto;
+    max-width: 700px;
+    background-color: #4444444b;
+    box-shadow: 
+    -5px 0px 5px 5px rgba(0, 0, 0, 0.459),
+    5px 0px 5px 5px rgba(0, 0, 0, 0.459);
+}
+#header {
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+    background-color: #0A2239;
+    color: #e5fcf5;
+    padding: 0px 0px 0px 20px;
+}
+h1 {
+    text-align: start;
+    position: relative;
+    -webkit-animation-name: author;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: 1;
+    animation-name: author;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    animation-direction: reverse;
+}
+@keyframes author {
+    0%  {color:#e5fcf5; left:0px; top:0px;}
+  100%   {color: #0A2239; left:480px; top:0px;}
+}
+p {
+    padding: 20px 0px 0px 25px;
+    text-align: start;
+    position: relative;
+    -webkit-animation-name: quote;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: 1;
+    animation-name: quote;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    animation-direction: reverse;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+    color: #44444400;
+    font-size: 20px;
+}
+@keyframes quote {
+    0%  {color:#0A2239; left:0px; top:0px;}
+  100%   {color: #44444400; left:250px; top:0px;}
+}
+#img-container {
+    text-align: center;
+    margin: auto;
+    padding: 25px 0px 30px 0px;
+}
+#api-img-full {
+    border: 1px solid;
+    border-radius: 50%;
+    box-shadow: 
+    0px 5px 5px 1px #0A2239,
+    0px -5px 5px 1px #0A2239,
+    5px 0px 5px 1px #0A2239,
+    -5px 0px 5px 1px #0A2239;
+    min-height: 480px;
+    min-width: 480px;
+}
+#api-img-responsive {
+    display: none;
+}
+@media only screen and (max-width: 480px) {
+    #api-img-full {
+        display: none;
+    }
+    #api-img-responsive {
+        display: initial;
+        border: 1px solid;
+        border-radius: 50%;
+        box-shadow: 
+        0px 2px 2px 1px #0A2239,
+        0px -2px 2px 1px #0A2239,
+        2px 0px 2px 1px #0A2239,
+        -2px 0px 2px 1px #0A2239;
+        min-height: 280px;
+        min-width: 280px;
+    }
+}
+#footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 80px;
+    background-color: #0A2239;
+    color: #e5fcf567;
+    padding: 0px 20px 0px 0px;
+}

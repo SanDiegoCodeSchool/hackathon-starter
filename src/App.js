@@ -5,43 +5,37 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            kjoke: 'ok',
-            tjoke: 'ok',
             inspire: 'ok',
             inspireAuthor: 'ok',
-            inspireBackground: null
         };
-        this.kanyeWestQuoteHandler = this.kanyeWestQuoteHandler.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
-// this is in order to see changes in a branch
-    kanyeWestQuoteHandler() {
-        axios.get('https://api.kanye.rest')
-            .then(response => {this.setState({kjoke: response.data.quote})} );
-
+ 
+    componentDidMount() {
         axios.get('http://quotes.rest/qod.json')
-            .then(response => {this.setState({ 
-            inspire: response.data.contents.quotes[0].quote,
-            inspireAuthor: response.data.contents.quotes[0].author,
-            inspireBackground: response.data.contents.quotes[0].background
-            });
-            console.log(response.data);
-            });
-        
-        axios.get('https://api.whatdoestrumpthink.com/api/v1/quotes/random')
-            .then(response => {this.setState({tjoke: response.data.message})} );
-
+        .then(response => {this.setState({ 
+        inspire: response.data.contents.quotes[0].quote,
+        inspireAuthor: response.data.contents.quotes[0].author,
+        });
+        });    
     }
-    
+
     render() {
         return (
-            <div>
-                <h1>Who said this?</h1>
-                <button onClick={this.kanyeWestQuoteHandler}>Generate</button>
-                <p>{this.state.kjoke}</p>
-                <p>{this.state.tjoke}</p>
-                <p>{this.state.inspire}</p>
-                <p>{this.state.inspireAuthor}</p>
-                <img src={this.state.inspireBackground}></img>
+            <div id='container'>
+                <div id='header'>
+                    <h1>{this.state.inspireAuthor}</h1>   
+                </div>
+                <div id='body'>
+                    <p>{this.state.inspire}</p>
+                    <div id='img-container'>
+                    <img id='api-img-full' src='https://loremflickr.com/api/1/?token=25.poMuGZoYYSPNQfNGIwkFgywxuMggbjyS&width=480&height=480&tag=history' alt='random-image-generator'></img>
+                    <img id='api-img-responsive' src='https://loremflickr.com/api/1/?token=25.poMuGZoYYSPNQfNGIwkFgywxuMggbjyS&width=280&height=280&tag=history' alt='random-image-generator'></img>
+                    </div>
+                </div>
+                <div id='footer'>
+                    <small>project looking glass</small>
+                </div>
             </div>
         )
     }
