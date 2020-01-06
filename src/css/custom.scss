@@ -38,6 +38,16 @@ form{
     border: 1px solid red;
 }
 
+.breweryLocationTable{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+}
+
+.breweryLocations{
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+}
+
 footer{
     grid-row: 3;
 };

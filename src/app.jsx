@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import BreweryFinder from './BreweryFinder'
+import BreweryLocations from './BreweryLocations';
+import ErrorMessage from './ErrorMessage'
 
 class App extends Component {
     constructor(props){
@@ -14,21 +17,17 @@ class App extends Component {
                     <h3>The fastest way to find a brewery near you.</h3>
                 </header>
                 <main>
-                    <p>Sooooo how quick are you looking to find this brewery? For the quickest result, press the button on your left.</p>
-                    <div className='lookupContainer'>
-                        <div className="autoBreweryFinder">
-                            <p>QUICK! Lets find a brewery close to you right...</p>
-                            <button>MEOW!</button>
-                        </div>
-                        <div className="breweryLookUp">
-                            <p> So maybe you are looking for a brewery close to somewhere you are going. Thats cool, fill out the form below to get started.</p>
-                            <form>
-                                Zip Code:<br/>
-                                <input type="number" name="zipcodeInput" maxlength="5"/><br/>                            
-                            </form>
-                            <button>List some breweries! </button>
-                        </div>
+                    {/* <BreweryFinder/> */}
+                    <div className='breweryLocationTable'>
+                        <div className='tableHeaders tableName'>Brewery Name</div>
+                        <div className='tableHeaders tableWebsite'>Brewery Website</div>
+                        <div className='tableHeaders tableAddress'>Brewery Address</div>
+                        <div className='tableHeaders tableMap'>Link to map</div>
                     </div>
+                    <BreweryLocations/>
+                    <button>lets start a new search</button>
+                    {/* <ErrorMessage/> */}
+                    
                 </main>
                 <footer>
                     <h1>footer text</h1>
