@@ -5,38 +5,53 @@
 };
 header{
     grid-row: 1;
-
 };
+
+.headerTitle{
+    font: bold 40px message-box;
+    margin-bottom: 0px;
+}
+
+.headerSubTitle{
+    font: 35px message-box;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    font-style: italic;
+}
 main{
     grid-row: 2;
     border: 1px dotted orange;
 };
 
+.instructions{
+    font: 15px message-box;
+}
+
 .lookupContainer{
     display: flex;
     justify-content: space-around;
     align-content: space-around;
+    margin: 30px;
 };
 
 .autoBreweryFinder{
     font: bold 30px message-box;
-    border: 1px solid red;
+    border: 3px solid orange;
     order: 1;
     height: 300px;
     width: 600px;
+    border-radius: 8px;
 };
 
 .breweryLookUp{
     font: bold 30px message-box;
-    border: 1px solid red;
+    border: 3px solid orange;
     order: 2;
     height: 300px;
     width: 600px;
+    text-align: center;
+    border-radius: 8px;
 };
-
-form{
-    border: 1px solid red;
-}
 
 .breweryLocationTable{
     display: grid;
@@ -46,6 +61,88 @@ form{
 .breweryLocations{
     display: grid;
     grid-template-columns: 2fr 2fr 2fr 1fr;
+}
+
+.breweryData{
+    font: 15px message-box;
+    padding-top: 15px;
+    padding-right: 10px;
+}
+
+.quickFindButton{
+    color: black;
+    background-color: white;
+    width: 100%;
+    font-size: 25px;
+    border-radius: 8px;
+    border: 2px solid rgb(122, 103, 67);
+    transition-duration: 0.4s;
+    font-family: message-box;
+    margin-top: 65px;
+}
+
+.quickFindButton:hover{
+    background-color: rgb(122, 103, 67);
+    color: white
+}
+
+#autoBreweryFinderText{
+    padding-top: 50px;
+    text-align: center;
+}
+
+.findBreweryByInputButton{
+    color: black;
+    background-color: white;
+    width: 100%;
+    font-size: 25px;
+    border-radius: 8px;
+    border: 2px solid rgb(122, 103, 67);
+    transition-duration: 0.4s;
+    font-family: message-box;
+    margin-top: 36px;
+}
+
+.findBreweryByInputButton:hover{
+    background-color: rgb(122, 103, 67);
+    color: white
+}
+
+#userEnteredZipcode{
+    width: 30%;
+    font-size: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.tableHeaders{
+    font : 20px message-box;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.returnToBreweryFinderButton{
+    color: black;
+    background-color: white;
+    width: 100%;
+    font-size: 25px;
+    border-radius: 8px;
+    border: 2px solid rgb(122, 103, 67);
+    transition-duration: 0.4s;
+    font-family: message-box;
+    margin-top: 36px;   
+}
+
+.returnToBreweryFinderButton:hover{
+    background-color: rgb(122, 103, 67);
+    color: white
+}
+
+.errorMessage{
+    margin-top: 40px;
+    font: bold 20px message-box;
+    color: red;
+    text-align: center;
 }
 
 
