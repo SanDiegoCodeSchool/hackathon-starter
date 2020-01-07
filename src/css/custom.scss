@@ -1,6 +1,6 @@
 .container{
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 5fr;
     background: linear-gradient(to top, #ffa751, #ffe259); 
 };
 header{
@@ -48,7 +48,4 @@ form{
     grid-template-columns: 2fr 2fr 2fr 1fr;
 }
 
-footer{
-    grid-row: 3;
-};
 
