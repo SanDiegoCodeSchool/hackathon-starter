@@ -20,10 +20,14 @@ class App extends Component {
     };
 
     componentDidMount(){
-            Axios
-            .get('https://freegeoip.app/json/')
-            .then(response => response.data)
-            .then(currentLocation => this.setState({ currentLocation }));
+            Axios.get('/api')
+            // .get('https://freegeoip.app/json/')
+            // .then(response => response.data)
+            .then(currentLocation => this.setState({ currentLocation: {
+                city: currentLocation.data.city,
+                zip: currentLocation.data.zip,
+                state: currentLocation.data.region_name
+            }}));
           }
 // The clickHandler function will look at the name of the button that was pressed using event.target.name. 
 //from there a code block will run depending on the button that was pushed. For example if the 'breweryQuickFindButton'
@@ -34,7 +38,7 @@ class App extends Component {
     clickHandler(event){
         if (event.target.name == 'breweryQuickFindButton'){
             Axios
-            .get(`https://api.openbrewerydb.org/breweries?by_postal=${this.state.currentLocation.zip_code}`)
+            .get(`https://api.openbrewerydb.org/breweries?by_postal=${this.state.currentLocation.zip}`)
             .then(response => response.data)
             .then(localBrewery => this.setState({ localBrewery }));
             this.setState({ displayView : 2});
@@ -56,6 +60,7 @@ class App extends Component {
         };
     };
     render(){
+        console.log(this.state);
         // the view that is displayed is rendered based on the state value for 'displayView'. If displayView
         // is equal to 1, then the <BreweryFinder> component will render. This componenet is used to search 
         //for a brewery. If displayView is equal to 2, then <BreweryLocations> will render which shows all the 
