@@ -60,7 +60,6 @@ class App extends Component {
         };
     };
     render(){
-        console.log(this.state);
         // the view that is displayed is rendered based on the state value for 'displayView'. If displayView
         // is equal to 1, then the <BreweryFinder> component will render. This componenet is used to search 
         //for a brewery. If displayView is equal to 2, then <BreweryLocations> will render which shows all the 
