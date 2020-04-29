@@ -9,24 +9,23 @@ app.use(express.static('dist'));
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
+    console.log(req.headers)
     var ipAddr = req.headers["x-forwarded-for"];
     if (ipAddr) {
         var list = ipAddr.split(",");
         ipAddr = list[list.length-1];
         axios.get(`http://api.ipstack.com/${ipAddr}?access_key=${process.env.APIKEY}`)
         .then((result) => {
-            res.send(result.data, 1);
-            console.log(result.data, 2);
+            res.send(result.data)
         })
         .catch((error) => {
             console.error(error);
-            res.send('An error occured.');
+            res.send('An error occured')
         })
     } else {
         axios.get(`http://api.ipstack.com/check?access_key=${process.env.APIKEY}`)
             .then((result) => {
-                res.send(result.data, 3);
-                console.log(result.data, 4);
+                res.send(result.data);
             })
             .catch((error) => {
                 console.error(error);
