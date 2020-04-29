@@ -9,6 +9,7 @@ app.use(express.static('dist'));
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
+    console.log(req)
     const ipAddr = req.headers["x-forwarded-for"];
     if (ipAddr) {
         const list = ipAddr.split(",");
@@ -16,6 +17,7 @@ app.get('/api', (req, res) => {
         axios.get(`http://api.ipstack.com/${ipAddr}?access_key=${process.env.APIKEY}`)
         .then((result) => {
             res.send(result.data);
+            console.log(result.data);
         })
         .catch((error) => {
             console.error(error);
@@ -25,6 +27,7 @@ app.get('/api', (req, res) => {
         axios.get(`http://api.ipstack.com/check?access_key=${process.env.APIKEY}`)
             .then((result) => {
                 res.send(result.data);
+                console.log(result.data);
             })
             .catch((error) => {
                 console.error(error);
