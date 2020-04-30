@@ -40,23 +40,26 @@ class App extends Component {
             Axios
             .get(`https://api.openbrewerydb.org/breweries?by_postal=${this.state.currentLocation.zip}`)
             .then(response => response.data)
-            .then(localBrewery => this.setState({ localBrewery }));
-            this.setState({ displayView : 2});
+            .then(localBrewery => this.setState({ localBrewery }))
+            .then(() => this.setState({ displayView : 2}));
+            // this.setState({ displayView : 2});
         } else if (event.target.name == 'returnToBreweryFinder'){
             this.setState({ displayView : 1});
+            this.setState({localBrewery: []});
         } else if (event.target.name == 'breweryFindByUserInputButton') {
             let userEnteredZipcode = document.getElementById('userEnteredZipcode').value;
+            userEnteredZipcode.length != 5 ? alert('Please enter a 5 digit zipcode!') : 
             Axios
             .get(`https://api.openbrewerydb.org/breweries?by_postal=${userEnteredZipcode}`)
             .then(response => response.data)
-            .then(localBrewery => this.setState({ localBrewery })); 
-            if (userEnteredZipcode.length !== 5){
-                alert('Please enter a 5 digit zipcode!')
-            } else if (this.state.localBrewery.length == 0){
+            .then(localBrewery => this.setState({ localBrewery }))
+            .then( () => {
+                if (this.state.localBrewery.length == 0){
                 this.setState({displayView : 3});
-            } else {
+                } else {
                 this.setState({ displayView : 2 });
-            };    
+                }
+            });
         };
     };
     render(){

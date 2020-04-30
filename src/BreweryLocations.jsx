@@ -8,8 +8,9 @@ export default function BreweryLocations(props){
             <div className='breweryWebsite breweryData'>
                 <a href={props.website}>{props.website}</a>
             </div>
-            <div className='breweryAddress breweryData'>{props.street} <br/> 
-                                                        {props.city}, {props.state}
+            <div className='breweryAddress breweryData'>
+                {props.street} <br/> 
+                {props.city}, {props.state}
             </div>
             <div className='breweryMap breweryData'>
                 <a href={url}>Locate in Google Maps!</a>
