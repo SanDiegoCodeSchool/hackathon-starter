@@ -9,7 +9,7 @@ app.use(express.static('dist'));
 app.use(express.static('public'));
 
 app.get('/api', (req, res) => {
-    console.log(req.headers['x-forwarded-for'])
+    // console.log(req.headers['x-forwarded-for'])
     var ipAddr = req.headers["x-forwarded-for"];
     if (ipAddr) {
         var list = ipAddr.split(",");
