@@ -42,7 +42,6 @@ class App extends Component {
             .then(response => response.data)
             .then(localBrewery => this.setState({ localBrewery }))
             .then(() => this.setState({ displayView : 2}));
-            // this.setState({ displayView : 2});
         } else if (event.target.name == 'returnToBreweryFinder'){
             this.setState({ displayView : 1});
             this.setState({localBrewery: []});

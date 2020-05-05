@@ -1,31 +1,18 @@
-# React Starter w/ Express Server, using Webpack
+# Welcome to Diego's Brewery Finder
 
-This is a project template that can be used to quickly start a react project. It has minimal dependencies and has a server route that you can use to proxy requests without exposing your api keys.
+This web app was created to quickly find a brewery near you :beers:. A live version of this application can be found at [here](https://dflores7237-brewery-finder.herokuapp.com/). 
 
 ## Getting Started
+After cloning these files install your dependencies:
+> $ npm install
 
-Install dependencies:
-```
-$ npm install
-```
+Then hop on over to [ipstack](https://ipstack.com/) and register for an API key. It is recomended that you set up a .env file in the root of the directory to store your API key. Next reference this environmental variable to the api call located in `server/server.js`. Currently, this application will find breweries by zipcode using [openbreweryDB](https://www.openbrewerydb.org/).
 
-Run the build
-```
-$ npm run build
-```
+Now run the build and fire up your server
+> $ npm run build && npm start
 
-Start the server
-```
-$ npm run start
-```
+You will find the application running in your browser on your localhost:3000
 
-## Use case
+Cheers!
 
-When you create a request to a third party API from the server side (to protect your API key/credentials) you should create a `.env` file with your key.
-
-This will ensure that your private credentials do not get committed to git and will not be exposed to others on Github.
-
-You will also need to modify the `server/server.js` file to make your call to your api url and return back your data to your front end.
-
-An example of a request to a mock server is shown in the file. You will replace this with the API you want data from.
 
